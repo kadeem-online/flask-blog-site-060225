@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Blog Zero
+        {% block title_suffix %}
+        {# Text appended after the 'Blog Zero' label #}
+        {% endblock title_suffix %}
+    </title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='src/assets/main-BgEqqU6V.css') }}">
+</head>
+
+<body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50">
+    <main class="">
+        {% block page_content %}
+        {# Content to be inserted into the page #}
+        {% endblock page_content %}
+    </main>
+
+    {% if config.IS_DEV == True %}
+    <script type="module" src="{{ config.VITE_DEV_SERVER }}/@vite/client"></script>
+    <script type="module" src="{{ config.VITE_DEV_SERVER }}/src/main.ts"></script>
+    {% else %}
+    <script src="{{ url_for('static', filename='src/main.js') }}"></script>
+    {% endif %}
+</body>
+
+</html>

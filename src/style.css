@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+/* set flask templates detection */
+@source "../app/templates";
+
+/* set js and scss files detection */
+@source "../src"
