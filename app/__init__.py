@@ -1,6 +1,8 @@
 import os
 
 from .blueprints.root import ( ROOT_BP )
+from app.database import ( database, migrate )
+from app.database.models import User
 from dotenv import ( load_dotenv )
 from flask import ( Flask, render_template )
 
@@ -36,8 +38,23 @@ def create_app():
     # configure the application
     _app.config.from_mapping(
         IS_DEV=_is_dev_mode,
-        VITE_DEV_SERVER = os.environ.get("VITE_DEV_SERVER")
+        VITE_DEV_SERVER = os.environ.get("VITE_DEV_SERVER"),
+
+        # Check if a database has been set if none default to sqlite db
+        SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', "sqlite:///blog_zero.db")
     )
+
+    # GUARD: ensure the instance folder exists
+    try:
+        os.makedirs(_app.instance_path)
+    except OSError:
+        pass
+
+    # connect the app to the database
+    database.init_app(_app)
+
+    # connect the migration utility
+    migrate.init_app(_app, database)
 
     # register the root blueprint
     _app.register_blueprint(ROOT_BP)
