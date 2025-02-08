@@ -10,7 +10,9 @@
         {# Text appended after the 'Blog Zero' label #}
         {% endblock title_suffix %}
     </title>
+    {% if config.IS_DEV != True %}
     <link rel="stylesheet" href="{{ url_for('static', filename='src/assets/main-BgEqqU6V.css') }}">
+    {% endif %}
 </head>
 
 <body class="bg-slate-50 text-slate-900 dark:bg-slate-900 dark:text-slate-50">
