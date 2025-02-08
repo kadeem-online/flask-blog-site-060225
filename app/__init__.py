@@ -1,6 +1,6 @@
 import os
 
-from app.blueprints import ( ROOT_BP )
+from app.blueprints import ( ADMIN_BP, ROOT_BP )
 from app.database import ( database, migrate )
 from app.database.models import User
 from dotenv import ( load_dotenv )
@@ -58,7 +58,9 @@ def create_app():
 
     # register the root blueprint
     _app.register_blueprint(ROOT_BP)
-    
+
+    # register the root blueprint
+    _app.register_blueprint(ADMIN_BP)
 
     # return the app instance
     return _app
