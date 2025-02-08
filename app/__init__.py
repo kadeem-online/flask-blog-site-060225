@@ -1,6 +1,6 @@
 import os
 
-from .blueprints.root import ( ROOT_BP )
+from app.blueprints import ( ROOT_BP )
 from app.database import ( database, migrate )
 from app.database.models import User
 from dotenv import ( load_dotenv )

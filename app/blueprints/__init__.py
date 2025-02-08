@@ -1,0 +1,1 @@
+from app.blueprints.root import ROOT_BP
