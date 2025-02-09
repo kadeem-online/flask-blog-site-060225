@@ -14,35 +14,6 @@ class UserRoleEnum(enum.Enum):
     '''
     EDITOR = "editor"
 
-def hash_user_password(password:str)->str:
-    '''
-    Centralized function for hashing the user's password.
-
-    Parameters:
-        password(int) - the plaintext password to be hashed.
-    
-    Returns:
-        hashed_password(str) - the hash for the input plaintext password.
-    '''
-
-    _hash = generate_password_hash(password=password)
-    return _hash
-
-def verify_user_password(password_hash:str, password:str)->bool:
-    '''
-    Centralized function for verifying the legitimacy of the provided password
-    against the hash saved in the database.
-
-    Parameters:
-        password_hash(str) - The hashed password saved on the database.
-        password(str) - The password to be verified against the hashed passsword.
-
-    Returns:
-        is_valid(bool) - boolean representing if the password provided matches the hash.
-    '''
-    _is_valid = check_password_hash(pwhash=password_hash, password=password)
-    return _is_valid
-
 class User(database.Model):
     '''
     Defines the user model for the Blog Zero site
@@ -78,3 +49,32 @@ class User(database.Model):
     def __repr__(self):
         _description = f"User '{self.username}'."
         return _description
+    
+    def hash_user_password(password:str)->str:
+        '''
+        Centralized function for hashing the user's password.
+
+        Parameters:
+            password(int) - the plaintext password to be hashed.
+        
+        Returns:
+            hashed_password(str) - the hash for the input plaintext password.
+        '''
+
+        _hash = generate_password_hash(password=password)
+        return _hash
+
+    def verify_user_password(password_hash:str, password:str)->bool:
+        '''
+        Centralized function for verifying the legitimacy of the provided password
+        against the hash saved in the database.
+
+        Parameters:
+            password_hash(str) - The hashed password saved on the database.
+            password(str) - The password to be verified against the hashed passsword.
+
+        Returns:
+            is_valid(bool) - boolean representing if the password provided matches the hash.
+        '''
+        _is_valid = check_password_hash(pwhash=password_hash, password=password)
+        return _is_valid
