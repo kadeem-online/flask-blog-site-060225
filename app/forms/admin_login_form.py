@@ -1,5 +1,5 @@
 from flask_wtf import ( FlaskForm )
-from wtforms import ( StringField )
+from wtforms import ( PasswordField, StringField )
 from wtforms.validators import ( DataRequired, InputRequired )
 
 class AdminLoginForm(FlaskForm):
@@ -13,7 +13,7 @@ class AdminLoginForm(FlaskForm):
             InputRequired("Username and password fields can not be empty!")
         ],
     )
-    password = StringField(
+    password = PasswordField(
         'Password',
         validators=[
             DataRequired(message="A password value is required."),
