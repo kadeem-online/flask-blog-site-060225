@@ -39,6 +39,7 @@ def create_app():
     _app.config.from_mapping(
         IS_DEV=_is_dev_mode,
         VITE_DEV_SERVER = os.environ.get("VITE_DEV_SERVER"),
+        SECRET_KEY= os.environ.get("SECRET_KEY", "dev-secret-key"),
 
         # Check if a database has been set if none default to sqlite db
         SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL', "sqlite:///blog_zero.db")
