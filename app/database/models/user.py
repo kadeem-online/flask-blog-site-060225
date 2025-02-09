@@ -3,7 +3,9 @@
 import enum
 
 from app.database import ( database )
+from app.extensions import ( login_manager )
 from datetime import datetime
+from flask_login import ( UserMixin )
 from sqlalchemy import ( DateTime, Integer, String )
 from sqlalchemy.orm import ( Mapped, mapped_column )
 from werkzeug.security import ( check_password_hash, generate_password_hash )
@@ -14,7 +16,7 @@ class UserRoleEnum(enum.Enum):
     '''
     EDITOR = "editor"
 
-class User(database.Model):
+class User(database.Model, UserMixin):
     '''
     Defines the user model for the Blog Zero site
     '''
@@ -78,3 +80,7 @@ class User(database.Model):
         '''
         _is_valid = check_password_hash(pwhash=password_hash, password=password)
         return _is_valid
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(user_id)
