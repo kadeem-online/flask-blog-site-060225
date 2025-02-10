@@ -1,10 +1,11 @@
-{% extends "base.jinja2" %}
+{% extends "admin/layout.jinja2" %}
 
 {% block title_suffix %}
 {{" | Admin"}}
 {% endblock title_suffix %}
 
-{% block page_content %}
-<h1>Admin Page, welcome {{ current_user.username }}</h1>
-<a href="{{ url_for('admin.admin_logout') }}" class="bg-amber-500 hover:bg-amber-300 focus:bg-amber-600 text-slate-800 px-2 py-1.5 font-medium">Logout</a>
-{% endblock page_content %}
+{% block dashboard_content %}
+<div class="p-5">
+    <h1>Admin Page, welcome {{ current_user.username }}</h1>
+</div>
+{% endblock dashboard_content %}
