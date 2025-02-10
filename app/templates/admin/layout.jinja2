@@ -1,0 +1,77 @@
+{% extends "base.jinja2" %}
+{% import 'components/dashboard.jinja2' as dashboard %}
+
+{% block page_content %}
+<div class="relative h-screen flex flex-row items-stretch">
+
+    <div class="min-w-60 max-w-80 h-screen">
+        <div class="flex h-full flex-col gap-5 overflow-auto p-5">
+            <div class="logo">
+                <a href="{{ url_for('root.index') }}">
+                    <span class="font-medium text-2xl">
+                        Blog Zero
+                    </span>
+                </a>
+            </div>
+            <ul id="sidebar-nav-list" class="nav-list flex flex-col gap-1">
+                {# posts #}
+                {{
+                dashboard.sidebar_nav_link(
+                "Posts",
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L10.582 16.07a4.5 4.5 0 0 1-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 0 1 1.13-1.897l8.932-8.931Zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0 1 15.75 21H5.25A2.25 2.25 0 0 1 3 18.75V8.25A2.25 2.25 0 0 1 5.25 6H10" />
+                </svg> '
+                )
+                }}
+
+                {# sign out button #}
+                {{
+                dashboard.sidebar_nav_link(
+                "Sign Out",
+                '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                    stroke="currentColor" class="size-6">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15" />
+                </svg>',
+                url_for('admin.admin_logout')
+                )
+                }}
+            </ul>
+            <div class="dummy hidden">
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsam repellat quae repudiandae excepturi
+                omnis sed, fugit rem nihil libero, laborum fugiat eveniet. Veritatis porro officiis perferendis
+                asperiores, consectetur, expedita aperiam quo debitis repudiandae distinctio fugit provident sequi hic
+                sint ad mollitia! Inventore laboriosam reprehenderit, cupiditate aliquam, qui tempora atque voluptatem
+                sunt repellendus doloremque tenetur, quam ipsa! Doloremque praesentium quis assumenda. Autem nemo minima
+                porro, inventore aliquam architecto consequatur sed dolorem. Expedita harum tenetur saepe sunt? Aliquam
+                voluptas voluptatum, nam minima facere blanditiis amet distinctio ad omnis? Rerum, neque? Id vero
+                pariatur quisquam eaque rerum! Natus possimus iure nemo voluptatem fugiat adipisci assumenda dolor
+                cumque labore facilis corrupti, officia sapiente, fuga eaque, quas optio aspernatur! Cum reiciendis in
+                est eveniet commodi, atque ea esse, cumque ullam sequi iusto dolorum voluptatum animi! Perferendis
+                excepturi neque voluptatem, cum praesentium aliquam. Quaerat repellat dolore, ipsum odio necessitatibus
+                esse illo perferendis assumenda quis facilis animi ab rerum nobis laborum sint saepe magnam et
+                perspiciatis in ullam? Possimus dolores quidem deleniti molestiae autem sit porro labore. Dolorum nisi
+                adipisci magni temporibus rem fugiat sed dolores corporis labore accusantium obcaecati, suscipit quasi
+                quos beatae fugit non, soluta sit, provident ratione facere voluptatibus inventore debitis. Minima
+                inventore rem, natus perspiciatis voluptatem, reiciendis nobis, maxime mollitia ea dolore error sed
+                quibusdam aliquid deleniti aspernatur. Ipsum non exercitationem expedita voluptate ipsam voluptas
+                similique adipisci natus eos pariatur repellendus consequuntur tenetur officiis illo excepturi labore
+                explicabo sequi, eaque odio molestias fugit! Quod nisi eligendi sunt reprehenderit expedita neque
+                repellat culpa mollitia ea repudiandae, consequuntur corrupti voluptatem eos ut! Quae asperiores nisi
+                eligendi porro autem sapiente suscipit iusto? Quis veritatis rerum unde ipsum aperiam officia excepturi,
+                ut perferendis. Totam et magni suscipit quod vitae ut dolor ducimus repudiandae tempore excepturi!
+                Inventore fuga similique impedit numquam a accusantium voluptas accusamus officia facilis perferendis!
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-content grow bg-slate-200 dark:bg-slate-800">
+        <div class="h-full overflow-auto">
+            {% block dashboard_content %}
+
+            {% endblock dashboard_content %}
+        </div>
+    </div>
+</div>
+{% endblock page_content %}
