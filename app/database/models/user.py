@@ -7,7 +7,8 @@ from app.extensions import ( login_manager )
 from datetime import datetime
 from flask_login import ( UserMixin )
 from sqlalchemy import ( DateTime, Integer, String )
-from sqlalchemy.orm import ( Mapped, mapped_column )
+from sqlalchemy.orm import ( Mapped, mapped_column, relationship )
+from typing import ( List )
 from werkzeug.security import ( check_password_hash, generate_password_hash )
 
 class UserRoleEnum(enum.Enum):
@@ -46,6 +47,9 @@ class User(database.Model, UserMixin):
     created_at: Mapped[datetime] = mapped_column(
         DateTime(),
         default=datetime.now
+    )
+    posts: Mapped[List["Post"]] = relationship(
+        back_populates="author"
     )
 
     def __repr__(self):
