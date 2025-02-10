@@ -4,7 +4,7 @@
 from app.database import ( database )
 
 # models
-from app.database.models.user import ( User, UserRoleEnum, hash_user_password )
+from app.database.models.user import ( User, UserRoleEnum )
 
 def seed_default_admin():
     '''
@@ -12,7 +12,7 @@ def seed_default_admin():
     '''
     _username = "admin"
     _password = "1234"
-    _hashed_password = hash_user_password(_password)
+    _hashed_password = User.hash_user_password(_password)
     _email = "admin@blog-zero.com"
     _role = UserRoleEnum.EDITOR
 
