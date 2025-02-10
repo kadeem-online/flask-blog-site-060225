@@ -2,7 +2,7 @@ import os
 
 from app.blueprints import ( ADMIN_BP, ROOT_BP )
 from app.database import ( database, migrate )
-from app.database.models import User
+from app.database.models import ( User, Post )
 from app.extensions import ( login_manager )
 from dotenv import ( load_dotenv )
 from flask import ( Flask, render_template )
