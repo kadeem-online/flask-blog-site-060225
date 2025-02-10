@@ -3,6 +3,7 @@ import os
 from app.blueprints import ( ADMIN_BP, ROOT_BP )
 from app.database import ( database, migrate )
 from app.database.models import ( User, Post )
+from app.database.seed import ( BlogZeroSeeder )
 from app.extensions import ( login_manager )
 from dotenv import ( load_dotenv )
 from flask import ( Flask, render_template )
@@ -60,6 +61,10 @@ def create_app():
 
     # connect the login manager
     login_manager.init_app(_app)
+
+    # seeder
+    _seeder = BlogZeroSeeder(database)
+    _seeder.init_app(_app)
 
     # register the root blueprint
     _app.register_blueprint(ROOT_BP)
